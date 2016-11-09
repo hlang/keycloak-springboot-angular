@@ -17,8 +17,16 @@
 //        keycloak.init({onLoad: 'login-required'})
     </script>
 </head>
-<body ng-cloak>
-<div class="container" ng-controller="secController">
+<body ng-cloak ng-controller="secController">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <button type="button"
+                class="btn btn-default navbar-btn navbar-right"
+                ng-click="logout()">Logout</button>
+        <p class="navbar-text navbar-right">User: {{user.name}}</p>
+    </div>
+</nav>
+<div class="container" >
     <h3>Hello World!</h3>
 
     <div>
@@ -28,9 +36,6 @@
         <h3 ng-show="user.isAdmin">I'm an administrator!</h3>
 
         <button class="btn btn-default" ng-click="getComment()">Press me!</button>
-    </div>
-    <div class="container">
-        <button class="btn btn-default" ng-click="logout()">logout</button>
     </div>
 </div>
 </body>
