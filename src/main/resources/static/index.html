@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpringBoot with KeyCloak</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/keycloak.js"></script>
+    <script>
+        var keycloak = Keycloak();
+        keycloak.init().success(function (authenticated) {
+//            alert(authenticated ? 'authenticated' : 'not authenticated');
+        }).error(function () {
+            alert('failed to initialize');
+        });
+        keycloak.init({onLoad: 'login-required'})
+    </script>
+</head>
+<body ng-app="secDemoApp">
+<div class="container">
+    <h3>Hello World!</h3>
+
+    <div ng-controller="secController">
+        <p>The ID is {{greeting.id}}</p>
+        <p>The content is {{greeting.content}}</p>
+
+        <button ng-click="getComment()">Press me!</button>
+    </div>
+</div>
+</body>
+</html>
