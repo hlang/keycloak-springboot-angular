@@ -8,24 +8,29 @@
     <script src="js/app.js"></script>
     <script src="js/keycloak.js"></script>
     <script>
-        var keycloak = Keycloak();
-        keycloak.init().success(function (authenticated) {
-//            alert(authenticated ? 'authenticated' : 'not authenticated');
-        }).error(function () {
-            alert('failed to initialize');
-        });
-        keycloak.init({onLoad: 'login-required'})
+//        var keycloak = Keycloak();
+//        keycloak.init().success(function (authenticated) {
+////            alert(authenticated ? 'authenticated' : 'not authenticated');
+//        }).error(function () {
+//            alert('failed to initialize');
+//        });
+//        keycloak.init({onLoad: 'login-required'})
     </script>
 </head>
-<body ng-app="secDemoApp">
-<div class="container">
+<body ng-cloak>
+<div class="container" ng-controller="secController">
     <h3>Hello World!</h3>
 
-    <div ng-controller="secController">
-        <p>The ID is {{greeting.id}}</p>
-        <p>The content is {{greeting.content}}</p>
+    <div>
+        <p>User: {{user.name}}</p>
+        <p ng-show="!isTokenExpired()">Your token is still valid.</p>
+        <h3 ng-show="user.isUser">I'm a user</h3>
+        <h3 ng-show="user.isAdmin">I'm an administrator!</h3>
 
-        <button ng-click="getComment()">Press me!</button>
+        <button class="btn btn-default" ng-click="getComment()">Press me!</button>
+    </div>
+    <div class="container">
+        <button class="btn btn-default" ng-click="logout()">logout</button>
     </div>
 </div>
 </body>
