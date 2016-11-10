@@ -34,8 +34,6 @@
         <p ng-show="!isTokenExpired()">Your token is still valid.</p>
         <h3 ng-show="user.isUser">I'm a user</h3>
         <h3 ng-show="user.isAdmin">I'm an administrator!</h3>
-
-        <button class="btn btn-default" ng-click="getComment()">Press me!</button>
     </div>
 </div>
 
@@ -43,7 +41,8 @@
     <div class="panel-body">
         <ul class="list-group" ng-repeat="comment in comments">
             <li class="list-group-item">{{comment.content}}
-                <button class="btn btn-sm" ng-show="user.isAdmin">
+                <button class="btn btn-sm"
+                        ng-click="deleteComment(comment.id)">
                     <span class="glyphicon glyphicon-remove-circle" ></span>
                 </button>
             </li>

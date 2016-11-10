@@ -21,12 +21,21 @@ secDemoApp.controller('secController', function ($scope, $http, keycloak) {
         keycloak.logout();
     };
 
+    $scope.deleteComment = function (id) {
+        $http.delete("/admin/comment/" + id)
+            .then(function successCallback(response) {
+                $scope.getComment();
+            });
+    };
+
     keycloak.loadUserInfo().success(function (userInfo) {
         $scope.user.name = userInfo.name;
         $scope.$apply();
     });
     $scope.user.isUser = keycloak.hasRealmRole("user");
     $scope.user.isAdmin = keycloak.hasRealmRole("admin");
+
+    $scope.getComment();
 
 });
 

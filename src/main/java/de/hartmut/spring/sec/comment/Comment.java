@@ -1,4 +1,4 @@
-package de.hartmut.spring.sec.rest;
+package de.hartmut.spring.sec.comment;
 
 /**
  * Created by hartmut on 09.11.16.
