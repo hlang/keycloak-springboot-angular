@@ -2,7 +2,7 @@ var secDemoApp = angular.module('secDemoApp', []);
 
 secDemoApp.controller('secController', function ($scope, $http, keycloak) {
 
-    $scope.comments= [];
+    $scope.comments = [];
     $scope.formData = {};
     $scope.user = {
         name: 'ahh',
@@ -12,26 +12,30 @@ secDemoApp.controller('secController', function ($scope, $http, keycloak) {
     $scope.isTokenExpired = keycloak.isTokenExpired;
     $scope.token = keycloak.token;
 
-    $scope.getComment = function() {
+    $scope.getComment = function () {
         $http.get('/api/comment').success(function (data) {
             $scope.comments = data;
         })
     };
 
-    $scope.logout = function() {
+    $scope.logout = function () {
         keycloak.logout();
     };
 
     $scope.addComment = function () {
-        $http.post('/api/comment',
-            $scope.formData.comment
-        )
-            .then(function successCallback(response) {
+        keycloak.updateToken(30).success(function (refreshed) {
+            if (refreshed) {
+
+            }
+            $http.post('/api/comment',
+                $scope.formData.comment
+            ).then(function successCallback(response) {
                     $scope.getComment();
                 },
                 function errorCallback(response) {
 
                 });
+        })
     };
 
     $scope.deleteComment = function (comment) {
@@ -54,17 +58,34 @@ secDemoApp.controller('secController', function ($scope, $http, keycloak) {
 
 });
 
-// use bearer token when calling backend
-secDemoApp.config(['$httpProvider', function($httpProvider) {
-    var token = window._keycloak.token;
-    $httpProvider.defaults.headers.common['Authorization'] = 'BEARER ' + token;
-}]);
+secDemoApp.factory('authInterceptor', function ($q, keycloak) {
+    return {
+        request: function (config) {
+            var deferred = $q.defer();
+            if (keycloak.token) {
+                keycloak.updateToken(5).success(function () {
+                    config.headers = config.headers || {};
+                    config.headers.Authorization = 'Bearer ' + keycloak.token;
 
+                    deferred.resolve(config);
+                }).error(function () {
+                    deferred.reject('Failed to refresh token');
+                });
+            }
+            return deferred.promise;
+        }
+    };
+});
 
-angular.element(document).ready(function() {
+secDemoApp.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+
+});
+
+angular.element(document).ready(function () {
     window._keycloak = Keycloak();
 
-    secDemoApp.factory('keycloak', function($window) {
+    secDemoApp.factory('keycloak', function ($window) {
         return $window._keycloak;
     });
 
