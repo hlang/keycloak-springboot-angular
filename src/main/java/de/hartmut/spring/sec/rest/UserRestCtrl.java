@@ -14,12 +14,12 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/api")
-public class MyRestCtrl {
+public class UserRestCtrl {
 
     private final CommentRepo commentRepo;
 
     @Autowired
-    public MyRestCtrl(CommentRepo commentRepo) {
+    public UserRestCtrl(CommentRepo commentRepo) {
         this.commentRepo = commentRepo;
     }
 
