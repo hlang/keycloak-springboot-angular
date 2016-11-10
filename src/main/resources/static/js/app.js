@@ -21,10 +21,12 @@ secDemoApp.controller('secController', function ($scope, $http, keycloak) {
         keycloak.logout();
     };
 
-    $scope.deleteComment = function (id) {
-        $http.delete("/admin/comment/" + id)
+    $scope.deleteComment = function (comment) {
+        $http.delete("/admin/comment/" + comment.id)
             .then(function successCallback(response) {
                 $scope.getComment();
+            }, function errorCallback(response) {
+                comment.status = response.status;
             });
     };
 
