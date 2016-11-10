@@ -3,6 +3,7 @@ var secDemoApp = angular.module('secDemoApp', []);
 secDemoApp.controller('secController', function ($scope, $http, keycloak) {
 
     $scope.comments= [];
+    $scope.formData = {};
     $scope.user = {
         name: 'ahh',
         isUser: false,
@@ -19,6 +20,18 @@ secDemoApp.controller('secController', function ($scope, $http, keycloak) {
 
     $scope.logout = function() {
         keycloak.logout();
+    };
+
+    $scope.addComment = function () {
+        $http.post('/api/comment',
+            $scope.formData.comment
+        )
+            .then(function successCallback(response) {
+                    $scope.getComment();
+                },
+                function errorCallback(response) {
+
+                });
     };
 
     $scope.deleteComment = function (comment) {
