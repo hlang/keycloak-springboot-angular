@@ -38,5 +38,17 @@
         <button class="btn btn-default" ng-click="getComment()">Press me!</button>
     </div>
 </div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <ul class="list-group" ng-repeat="comment in comments">
+            <li class="list-group-item">{{comment.content}}
+                <button class="btn btn-sm" ng-show="user.isAdmin">
+                    <span class="glyphicon glyphicon-remove-circle" ></span>
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>
