@@ -1,4 +1,4 @@
-package de.hartmut.spring.sec.config;
+package de.hartmut.spring.keycloak.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

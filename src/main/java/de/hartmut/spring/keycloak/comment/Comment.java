@@ -1,4 +1,4 @@
-package de.hartmut.spring.sec.comment;
+package de.hartmut.spring.keycloak.comment;
 
 /**
  * Created by hartmut on 09.11.16.

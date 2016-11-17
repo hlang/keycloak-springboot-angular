@@ -1,7 +1,7 @@
-package de.hartmut.spring.sec.rest;
+package de.hartmut.spring.keycloak.rest;
 
-import de.hartmut.spring.sec.comment.Comment;
-import de.hartmut.spring.sec.comment.CommentRepo;
+import de.hartmut.spring.keycloak.comment.Comment;
+import de.hartmut.spring.keycloak.comment.CommentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

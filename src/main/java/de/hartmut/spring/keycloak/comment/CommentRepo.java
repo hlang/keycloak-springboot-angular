@@ -1,4 +1,4 @@
-package de.hartmut.spring.sec.comment;
+package de.hartmut.spring.keycloak.comment;
 
 import org.springframework.stereotype.Component;
 

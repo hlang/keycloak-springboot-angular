@@ -1,4 +1,4 @@
-package de.hartmut.spring.sec;
+package de.hartmut.spring.keycloak;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
