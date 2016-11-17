@@ -1,23 +1,31 @@
 package de.hartmut.spring.keycloak.comment;
 
-/**
- * Created by hartmut on 09.11.16.
- */
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Comment {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String content;
 
-    public Comment(String id, String content) {
-        this.id = id;
+    public Comment() {
+    }
+
+    public Comment(String content) {
         this.content = content;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

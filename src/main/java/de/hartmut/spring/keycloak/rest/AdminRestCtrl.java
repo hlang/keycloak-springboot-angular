@@ -1,6 +1,6 @@
 package de.hartmut.spring.keycloak.rest;
 
-import de.hartmut.spring.keycloak.comment.CommentRepo;
+import de.hartmut.spring.keycloak.comment.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController()
 @RequestMapping("/admin")
 public class AdminRestCtrl {
-    private final CommentRepo commentRepo;
+    private final CommentRepository commentRepo;
 
     @Autowired
-    public AdminRestCtrl(CommentRepo commentRepo) {
+    public AdminRestCtrl(CommentRepository commentRepo) {
         this.commentRepo = commentRepo;
     }
 
     @DeleteMapping("/comment/{id}")
-    public ResponseEntity deleteComment(@PathVariable("id") String id) {
+    public ResponseEntity deleteComment(@PathVariable("id") Long id) {
         commentRepo.delete(id);
 
         return ResponseEntity.noContent().build();
