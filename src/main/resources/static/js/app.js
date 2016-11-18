@@ -23,19 +23,14 @@ secDemoApp.controller('secController', function ($scope, $http, keycloak) {
     };
 
     $scope.addComment = function () {
-        keycloak.updateToken(30).success(function (refreshed) {
-            if (refreshed) {
+        $http.post('/api/comment',
+            $scope.formData.comment
+        ).then(function successCallback(response) {
+                $scope.getComment();
+            },
+            function errorCallback(response) {
 
-            }
-            $http.post('/api/comment',
-                $scope.formData.comment
-            ).then(function successCallback(response) {
-                    $scope.getComment();
-                },
-                function errorCallback(response) {
-
-                });
-        })
+            });
     };
 
     $scope.deleteComment = function (comment) {
