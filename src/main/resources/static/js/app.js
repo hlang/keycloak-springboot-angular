@@ -78,7 +78,7 @@ secDemoApp.config(function ($httpProvider) {
 });
 
 angular.element(document).ready(function () {
-    window._keycloak = Keycloak('/keycloak/config   ');
+    window._keycloak = Keycloak('/keycloak/config');
 
     secDemoApp.factory('keycloak', function ($window) {
         return $window._keycloak;
