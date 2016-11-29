@@ -1,7 +1,0 @@
-{
-  "realm": "spring-sec-demo",
-  "auth-server-url": "http://localhost:8180/auth",
-  "ssl-required": "external",
-  "resource": "demo-frontend",
-  "public-client": true
-}
