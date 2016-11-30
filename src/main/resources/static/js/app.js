@@ -46,6 +46,8 @@ secDemoApp.controller('secController', function ($scope, $http, keycloak) {
         $scope.user.name = userInfo.name;
         $scope.$apply();
     });
+
+    $scope.accountUrl = keycloak.createAccountUrl();
     $scope.user.isUser = keycloak.hasRealmRole("user");
     $scope.user.isAdmin = keycloak.hasRealmRole("admin");
 

@@ -12,15 +12,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
-        <button class="btn btn-sm btn-default navbar-btn"
-                ng-click="logout()">
-            <span class="glyphicon glyphicon-log-out"></span>
+            <button class="btn btn-sm btn-default navbar-btn"
+                    ng-click="logout()">
+                <span class="glyphicon glyphicon-log-out"></span>
             </button>
-        <p class="navbar-text">
-            <span class="glyphicon glyphicon-user"></span>
-            {{user.name}}
-            <span class="glyphicon glyphicon-star" ng-show="user.isAdmin"></span>
-        </p>
+            <p class="navbar-text">
+                <a class="navbar-link" ng-href="{{accountUrl}}"><span class="glyphicon glyphicon-user"></span>
+                    {{user.name}}
+                </a>
+                <span class="glyphicon glyphicon-star" ng-show="user.isAdmin"></span>
+            </p>
         </ul>
     </div>
 </nav>
